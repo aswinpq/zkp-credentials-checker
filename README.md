@@ -1,82 +1,33 @@
-# Anonymous Credential Checker
-
-A production-grade zero-knowledge credential verification system using Merkle trees and Groth16 proofs. Enables anonymous proof of membership in a credential set without revealing which credential is held.
+# ZK Credentials Checker
 
 ## Overview
 
-This system allows:
-- **Issuers** to define credential sets (e.g., approved universities, companies)
-- **Holders** to prove membership in a set without revealing their specific credential
-- **Verifiers** to confirm membership claims cryptographically without learning any private information
+The **ZK Credentials Checker** is a privacy-preserving application designed to verify credentials using Zero-Knowledge Proofs (ZKPs). This system allows users to prove the validity of their credentials without revealing the underlying sensitive data. By leveraging Circom for circuit definition and SnarkJS for proof generation and verification, we ensure a secure and trustless verification process.
 
-## Architecture
+## Key Features
 
-```
-Client (Prover)          Server (Verifier)
-     |                         |
-     |--- Create Cred Set ---->|  (admin)
-     |<-- Set ID + Root -------|
-     |                         |
-     |--- Generate Proof ----->|  (with credential)
-     |<-- ZK Proof ------------|
-     |                         |
-     |--- Verify Proof ------->|  (anyone)
-     |<-- Valid/Invalid -------|
-```
+- **Privacy-Preserving Verification**: Users can prove they possess valid credentials without exposing the actual data.
+- **Zero-Knowledge Proofs**: Utilizes zk-SNARKs (Zero-Knowledge Succinct Non-Interactive Argument of Knowledge) for efficient and secure proofs.
+- **Credential Integrity**: Ensures that the credentials being verified have not been tampered with.
+- **Scalable Architecture**: Designed to handle multiple credential types and verification scenarios.
 
-### Core Components
+## Project Structure
 
-| Module | Description |
-|--------|-------------|
-| `core/merkle/` | Secure Merkle tree with SHA-256 and constant-time verification |
-| `core/prover/` | Groth16 ZK proof generation via snarkjs |
-| `core/verifier/` | Multi-stage proof verification pipeline |
-| `core/crypto/` | Hash management, secure randomness, key derivation |
-| `api/` | Express server with Helmet, rate limiting, input validation |
+- `circuits/`: Contains the Circom circuit definitions (`.circom`) and compilation scripts.
+- `src/`: Source code for the application logic, including proof generation and verification handlers.
+- `tests/`: Unit and integration tests to ensure system reliability.
+- `scripts/`: Utility scripts for setup, key generation, and deployment.
 
-## Quick Start
+## Getting Started
 
 ### Prerequisites
-- Node.js >= 20
-- npm >= 10
+
+- Node.js (v16 or higher)
+- npm or yarn
+- Rust (for Circom compiler)
+- Circom 2.0+
 
 ### Installation
-
-```bash
-npm install
-```
-
-### Development
-
-```bash
-# Start dev server
-npm run dev
-
-# Run tests
-npm test
-
-# Run tests with coverage
-npm run test:coverage
-
-# Lint
-npm run lint
-
-# Format
-npm run format
-```
-
-### API Endpoints
-
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| `GET` | `/api/health` | Health check |
-| `POST` | `/api/proof/credential-sets` | Create credential set |
-| `GET` | `/api/proof/credential-sets` | List credential sets |
-| `POST` | `/api/proof/generate` | Generate ZK proof |
-| `POST` | `/api/verify` | Verify a ZK proof |
-| `POST` | `/api/verify/roots` | Register trusted root |
-
-### Circuit Setup (for ZK proofs)
 
 ZK proof generation requires compiled Circom circuits:
 
