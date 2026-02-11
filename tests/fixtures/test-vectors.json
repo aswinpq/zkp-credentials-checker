@@ -1,0 +1,97 @@
+{
+    "merkleTree": {
+        "description": "Known-good Merkle tree test vectors for SHA-256",
+        "cases": [
+            {
+                "name": "single-leaf",
+                "leaves": [
+                    "hello"
+                ],
+                "expectedDepth": 0,
+                "rootNotEmpty": true
+            },
+            {
+                "name": "two-leaves",
+                "leaves": [
+                    "hello",
+                    "world"
+                ],
+                "expectedDepth": 1,
+                "rootNotEmpty": true
+            },
+            {
+                "name": "four-leaves",
+                "leaves": [
+                    "A",
+                    "B",
+                    "C",
+                    "D"
+                ],
+                "expectedDepth": 2,
+                "rootNotEmpty": true
+            },
+            {
+                "name": "eight-leaves",
+                "leaves": [
+                    "MIT",
+                    "Stanford",
+                    "Harvard",
+                    "Berkeley",
+                    "Caltech",
+                    "Princeton",
+                    "Yale",
+                    "Columbia"
+                ],
+                "expectedDepth": 3,
+                "rootNotEmpty": true
+            },
+            {
+                "name": "odd-leaves",
+                "leaves": [
+                    "X",
+                    "Y",
+                    "Z"
+                ],
+                "expectedDepth": 2,
+                "rootNotEmpty": true
+            }
+        ]
+    },
+    "hashing": {
+        "description": "SHA-256 test vectors",
+        "cases": [
+            {
+                "input": "hello",
+                "sha256": "2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824"
+            },
+            {
+                "input": "world",
+                "sha256": "486ea46224d1bb4fb680f34f7c9ad96a8f24ec88be73ea8e5a6c65260e9cb8a7"
+            },
+            {
+                "input": "",
+                "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            }
+        ]
+    },
+    "validation": {
+        "validUUIDs": [
+            "550e8400-e29b-41d4-a716-446655440000",
+            "6ba7b810-9dad-41d0-80b5-00c04fd430c8"
+        ],
+        "invalidUUIDs": [
+            "not-a-uuid",
+            "550e8400-e29b-51d4-a716-446655440000",
+            ""
+        ],
+        "validHexHashes": [
+            "2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824",
+            "486ea46224d1bb4fb680f34f7c9ad96a8f24ec88be73ea8e5a6c65260e9cb8a7"
+        ],
+        "invalidHexHashes": [
+            "not-a-hash",
+            "2cf24dba",
+            "ZZZZ4dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824"
+        ]
+    }
+}

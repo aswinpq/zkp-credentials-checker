@@ -1,0 +1,47 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+
+# Coverage
+coverage/
+
+# Environment
+.env
+.env.local
+.env.production
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Circuit build artifacts
+circuits/build/
+circuits/setup/powers-of-tau/*.ptau
+circuits/setup/powers-of-tau/*.zkey
+
+# Logs
+*.log
+logs/
+
+# Keys (never commit keys)
+*.key
+*.pem
+*.p12
+
+# Temporary
+tmp/
+temp/
+
+# Root level ZK artifacts
+*.zkey
+*.ptau
+verification_key.json
+compile_error.txt
